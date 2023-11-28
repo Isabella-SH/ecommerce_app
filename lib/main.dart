@@ -1,5 +1,4 @@
-import 'package:ecommerce_app/screens/home.dart';
-import 'package:ecommerce_app/screens/login.dart';
+import 'package:ecommerce_app/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -14,7 +13,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: ThemeData.light(),
     darkTheme: ThemeData.dark(),
-    home: const Login(),
+    home: const SplashScreen(),
     );
   }
 }

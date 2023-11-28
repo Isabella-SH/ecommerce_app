@@ -1,7 +1,9 @@
 import 'package:ecommerce_app/screens/favorite_products.dart';
+import 'package:ecommerce_app/screens/login.dart';
 import 'package:ecommerce_app/screens/search_products.dart';
 import 'package:ecommerce_app/screens/shopping_cart.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -26,11 +28,38 @@ class _HomeState extends State<Home> {
     });
   }
 
+  //navegacion hacia login()
+  navigateTo(){
+    //pushReplacement->para no retroceder la vista
+    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){
+      //si el logueo es true pasa a home, sino sigue en login
+      return const Login();
+    }));
+  }
+
+  logout() async {
+    final SharedPreferences prefs= await SharedPreferences.getInstance();
+    await prefs.remove('isLogged');
+
+    //navegar hacia el login despues de desloguear
+    navigateTo();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Ecommerce"),
+
+        actions: [
+          IconButton(
+              onPressed: (){
+                logout();     //metodo para desloguearse
+              },
+              icon: const Icon(Icons.logout)  //simbolo en el appbar para desloguearse
+          )
+        ],
+
       ),
       body: _children[_selectedTab],
 

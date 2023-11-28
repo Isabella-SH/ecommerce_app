@@ -1,4 +1,5 @@
-import 'package:ecommerce_app/screens/Home.dart';
+import 'package:ecommerce_app/screens/home.dart';
+import 'package:ecommerce_app/screens/login.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: ThemeData.light(),
     darkTheme: ThemeData.dark(),
-    home: const Home(),
+    home: const Login(),
     );
   }
 }

@@ -49,7 +49,7 @@ class _ProductItemState extends State<ProductItem> {
     return Column(
       children: [
         SizedBox(
-          height: 150,
+          height: 140,
           child: Stack(
             children: [
               Image.network(widget.product.images[0],), //del arreglo de images escoge la pos 0

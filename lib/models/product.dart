@@ -1,6 +1,7 @@
 
 class Product {
 
+  final int id;
   final String name;
   final String category;
   final String gender;
@@ -9,7 +10,8 @@ class Product {
   final List availableColors;
 
   const Product(
-      {required this.name,
+      {required this.id,
+        required this.name,
         required this.category,
         required this.gender,
         required this.size,
@@ -19,7 +21,8 @@ class Product {
 
   //convuierte de json a objecto
   Product.fromJson(Map<String, dynamic> json)
-      : name = json['name'],
+      : id= json['id'],
+        name = json['name'],
         category = json['category'],
         gender = json['gender'],
         size = [],   //vacio para que acepte la lista

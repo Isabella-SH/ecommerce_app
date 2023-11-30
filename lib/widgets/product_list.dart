@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/models/product.dart';
+import 'package:ecommerce_app/repositories/products_favorites_repository.dart';
 import 'package:flutter/material.dart';
 
 class ProductList extends StatefulWidget {
@@ -43,22 +44,59 @@ class ProductItem extends StatefulWidget {
 
 class _ProductItemState extends State<ProductItem> {
 
+  //atributos
+  bool _favorite=false;
+  ProductFavoritesRepository? _productFavoritesRepository;
+
+
+  initialize()async{
+    //_favorite toma el valor que da el metodo del repositorie al pasarle cada entidad
+    _favorite=await _productFavoritesRepository?.isFavorite(widget.product)??false;
+    if (mounted){ //si ya se cargo toda la informacion
+      setState(() {
+        _favorite=_favorite;
+      });
+    }
+  }
+
+  @override
+  void initState(){
+    _productFavoritesRepository=ProductFavoritesRepository();
+    initialize();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
+
+    final my_image=Image.network(widget.product.images[0]);
+    final my_con= _favorite? const Icon(
+      Icons.favorite,color:Colors.red,
+    ):const Icon(
+      Icons.favorite,color:Colors.grey,
+    );
 
     return Column(
       children: [
         SizedBox(
-          height: 140,
+          height: 110,
           child: Stack(
             children: [
-              Image.network(widget.product.images[0],), //del arreglo de images escoge la pos 0
+              my_image, //del arreglo de images escoge la pos 0
               Positioned(
                 top:0,
                 right: 0,
                 child: IconButton(
-                  onPressed: (){},
-                  icon:const Icon(Icons.favorite), color: Colors.red,
+                  onPressed: (){
+                    //_favorite cambia
+                    setState(() {
+                      _favorite=!_favorite;
+                    });
+                    //se agrega o elimina del repository
+                    //si es true lo insert, sino lo elimina
+                    _favorite?_productFavoritesRepository?.insert(widget.product):_productFavoritesRepository?.delete(widget.product);
+                  },
+                  icon:my_con
                 )
               ),
             ]

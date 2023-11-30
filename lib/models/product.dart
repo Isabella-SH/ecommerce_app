@@ -35,8 +35,8 @@ class Product {
     return {
       'id':id,
       'name':name,
-      'images':images,
-      'availableColors':availableColors,
+      'images':images.join(','),
+      'availableColors':availableColors.join(','),
     };
   }
 

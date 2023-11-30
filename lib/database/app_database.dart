@@ -15,7 +15,7 @@ class AppDatabase{
     //abrir el directorio donde estan las databases y lo uno con el nombre de nuestra base se datos
     _db ??= await openDatabase(join(await getDatabasesPath(), databaseName),
         onCreate: (database, version){
-          database.execute("create table $tableName (id text primary key, name text, images text, availableColors text )");
+          database.execute("create table $tableName (id integer primary key, name text, images text, availableColors text )");
         }, version: version
     );
     return _db as Database;

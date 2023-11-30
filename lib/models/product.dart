@@ -35,6 +35,9 @@ class Product {
     return {
       'id':id,
       'name':name,
+      'category':category,
+      'gender':gender,
+      'size':size.join(','),
       'images':images.join(','),
       'availableColors':availableColors.join(','),
     };
@@ -43,15 +46,28 @@ class Product {
   //convierte un map a objeto
   //sirve para que convierta lo que devuelve la tabla de nuestra base de datos creada
   //para el getAll()
-  Product.fromMap(Map<String, dynamic>map):
+  /*Product.fromMap(Map<String, dynamic>map):
         id=map['id'],
         name=map["name"],
-        images=map["images"],
+        images: (map['images'] as List<dynamic>).cast<String>(), // Convertir la lista de imágenes a List<String>
         availableColors=map["availableColors"],
         category=map["category"],
         gender=map["gender"],
         size=map["size"];
+*/
 
+  // Método para convertir un mapa en una instancia de Product
+  factory Product.fromMap(Map<String, dynamic> map) {
+    return Product(
+      id: map['id'],
+      name: map['name'],
+      category: map['category'],
+      gender: map['gender'],
+      size: (map['size'] as String)?.split(',')??[],
+      images: (map['images'] as String?)?.split(',') ?? [],  // Convertir la cadena de imágenes a una lista
+      availableColors: (map['availableColors'] as String)?.split(',')??[],  // Convertir la cadena de colores a una lista
+    );
+  }
 }
 
 

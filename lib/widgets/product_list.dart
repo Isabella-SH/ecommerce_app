@@ -102,7 +102,7 @@ class _ProductItemState extends State<ProductItem> {
             ]
           )
         ),
-        Text(widget.product.name)
+        Text(widget.product.name??'')
       ],
     );
   }

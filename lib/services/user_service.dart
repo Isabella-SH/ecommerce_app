@@ -51,9 +51,9 @@ class UserService{
 
     Map<String, String> body = {
       'username': username,
-      'password': password,
-      'first_name': firstName,
       'last_name': lastName,
+      'first_name': firstName,
+      'password': password,
     };
 
     http.Response response = await http.post(

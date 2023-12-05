@@ -1,5 +1,6 @@
 
 import 'package:ecommerce_app/screens/Home.dart';
+import 'package:ecommerce_app/screens/signup.dart';
 import 'package:ecommerce_app/services/user_service.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -79,7 +80,20 @@ class _LoginState extends State<Login> {
                   authenticate();               //lama al metodo que tiene al servicio de login
                 },
                 child: const Text("Ingresar")
-            )
+            ),
+
+            SizedBox(height: 16.0),
+            TextButton(
+              onPressed: () {
+                // Navigate to SignUp screen
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => const SignUp()),
+                );
+              },
+              child: Text('Don\'t have an account? Sign Up'),
+            ),
+
           ],
         ),
       ),

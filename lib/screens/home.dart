@@ -1,7 +1,7 @@
 import 'package:ecommerce_app/screens/favorite_products.dart';
 import 'package:ecommerce_app/screens/login.dart';
 import 'package:ecommerce_app/screens/search_products.dart';
-import 'package:ecommerce_app/screens/shopping_cart.dart';
+import 'package:ecommerce_app/screens/restaurants.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -19,7 +19,7 @@ class _HomeState extends State<Home> {
   final List<Widget> _children=[
     const SearchProducts(),
     const FavoriteProducts(),
-    const ShoppingCart()
+    const Restaurants()
   ];
 
   _changeTab(int index){
@@ -72,7 +72,7 @@ class _HomeState extends State<Home> {
         items: const[
           BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
           BottomNavigationBarItem(icon: Icon(Icons.favorite), label: "Favorites"),
-          BottomNavigationBarItem(icon: Icon(Icons.shopping_cart), label: "Shopping")
+          BottomNavigationBarItem(icon: Icon(Icons.add_business), label: "Restaurants")
         ],
       ),
     );

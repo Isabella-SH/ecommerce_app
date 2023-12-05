@@ -4,7 +4,19 @@ import 'package:http/http.dart' as http;
 
 class UserService{
 
-  //https://plain-marbled-muskox.glitch.me/users?username=isa&password=123
+  //https://plain-marbled-muskox.glitch.me/users?username=jmayta&password=1234
+
+  /*
+  array
+  [1]
+  0
+  {5}
+  username:   : "jmayta"
+  last_name   : "Mayta"
+  first_name  : "Jorge"
+  password    : "1234"
+  id          :  1
+*/
 
   final String _baseUrl="https://plain-marbled-muskox.glitch.me/users?";
   final String _username = 'username=';
@@ -31,6 +43,30 @@ class UserService{
     }
     return false;
   }
+
+
+  Future<bool> createUser(String username, String password, String firstName, String lastName) async {
+
+    final url = 'https://plain-marbled-muskox.glitch.me/users';
+
+    Map<String, String> body = {
+      'username': username,
+      'password': password,
+      'first_name': firstName,
+      'last_name': lastName,
+    };
+
+    http.Response response = await http.post(
+      Uri.parse(url),
+      body: body,
+    );
+
+    if (response.statusCode == HttpStatus.created) {
+      return true;
+    }
+    return false;
+  }
+
 }
 
 

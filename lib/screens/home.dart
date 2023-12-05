@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/screens/favorite_products.dart';
+import 'package:ecommerce_app/screens/favorite_restaurants.dart';
 import 'package:ecommerce_app/screens/login.dart';
 import 'package:ecommerce_app/screens/search_products.dart';
 import 'package:ecommerce_app/screens/restaurants.dart';
@@ -19,7 +20,8 @@ class _HomeState extends State<Home> {
   final List<Widget> _children=[
     const SearchProducts(),
     const FavoriteProducts(),
-    const Restaurants()
+    const Restaurants(),
+    const FavoriteRestaurants()
   ];
 
   _changeTab(int index){
@@ -72,7 +74,8 @@ class _HomeState extends State<Home> {
         items: const[
           BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
           BottomNavigationBarItem(icon: Icon(Icons.favorite), label: "Favorites"),
-          BottomNavigationBarItem(icon: Icon(Icons.add_business), label: "Restaurants")
+          BottomNavigationBarItem(icon: Icon(Icons.add_business), label: "Restaurants"),
+          BottomNavigationBarItem(icon: Icon(Icons.favorite_rounded), label: "Fav-Rest")
         ],
       ),
     );

@@ -56,9 +56,32 @@ class RestaurantItem extends StatefulWidget {
 }
 
 class _RestaurantItemState extends State<RestaurantItem> {
+
   @override
   Widget build(BuildContext context) {
-    return Text(widget.restaurant.title);
+
+    //creo la imagen
+    final image=Image.network(widget.restaurant.poster!);   // '!' porque el atributo esta como '?'
+
+    final my_con= const Icon(
+      Icons.favorite,color:Colors.deepOrangeAccent,
+    );
+
+    return Card(
+      child: ListTile(
+        leading: image,
+
+        title: Text(widget.restaurant.title != null ? widget.restaurant.title! : 'Title is not defined'),    // '!' porque el atributo esta como '?'
+
+        trailing: IconButton(
+          icon: my_con,
+          //dentro del click
+          onPressed: (){
+
+          },
+        ),
+      ),
+    );
   }
 }
 
